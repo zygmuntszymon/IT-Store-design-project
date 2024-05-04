@@ -1,0 +1,8 @@
+          <nav className='hidden lg:block'>
+            <Link to="/laptopy" className='p-2 text-sm ease-out transition-all hover:text-violet-800'>Laptopy</Link>
+            <Link to="/komputery" className='p-2 text-sm ease-out transition-all hover:text-violet-800'>Komputery</Link>
+            <Link to="/podzespoly" className='p-2 text-sm ease-out transition-all hover:text-violet-800'>Podzespoły</Link>
+            <Link to="/smartfony" className='p-2 text-sm ease-out transition-all hover:text-violet-800'>Smartfony</Link>
+            <Link to="/gaming" className='p-2 text-sm ease-out transition-all hover:text-violet-800'>Gaming</Link>
+            <Link to="/akcesoria" className='p-2 text-sm ease-out transition-all hover:text-violet-800'>Akcesoria</Link>
+          </nav>
