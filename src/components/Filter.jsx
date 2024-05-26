@@ -16,7 +16,7 @@ export default function Filter() {
 
 
 
-        <div className="!mt-9 w-1/5 p-4 rounded-[20px] bg-gray-100 text-right flex flex-col justify-between items-center shadow-own text-[14px]">
+        <div className="!mt-9 w-1/5 p-4  text-right flex flex-col justify-between items-center border-r-[2px] text-[14px]">
 
             <b className='text-[18px] !mb-4'>Filtrowanie</b>
 

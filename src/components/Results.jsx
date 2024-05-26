@@ -13,10 +13,10 @@ export default function Results() {
                 <div className="text-[14px] p-2 float-right">
                     Sortowanie:
                     <select name="" id="">
-                        <option value="" className="text-center">po popularności rosnąco</option>
-                        <option value="" className="text-center">po popularności malejąco</option>
-                        <option value="" className="text-center">po cenie rosnąco</option>
-                        <option value="" className="text-center">po cenie malejąco</option>
+                        <option value="" className="text-right">po popularności rosnąco</option>
+                        <option value="" className="text-right">po popularności malejąco</option>
+                        <option value="" className="text-right">po cenie rosnąco</option>
+                        <option value="" className="text-right">po cenie malejąco</option>
                     </select>
                 </div>
                 <br />
