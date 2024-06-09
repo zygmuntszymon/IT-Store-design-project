@@ -1,0 +1,80 @@
+[
+    {
+        "id": 1,
+        "images": ["preyon","preyon-1","preyon-2","preyon-3","preyon-4"],
+        "title": "PREYON Nest PRO 800 ARGB",
+        "price": 5099,
+        "category": "komputery",
+        "cpu": "Intel Core i7",
+        "ram": "16GB",
+        "os": "Windows 10",
+        "gpu": "NVIDIA GeForce RTX 3070",
+        "producent": "Preyon",
+        "condition":"Nowe"
+    },
+    {
+        "id": 2,
+        "images": ["gamex","gamex-1","gamex-2","gamex-3","gamex-4"],
+        "title": "Komputer Game X G300",
+        "price": 4999,
+        "category": "komputery",
+        "cpu": "AMD Ryzen 7",
+        "ram": "32GB",
+        "os": "Windows 10",
+        "gpu": "NVIDIA GeForce RTX 3080",
+        "producent": "Game X",
+        "condition":"Poleasingowe"
+    },
+    {
+        "id": 3,
+        "images": ["unity","unity-1","unity-2","unity-3","unity-4"],
+        "title": "Komputer Unity V2",
+        "price": 2449,
+        "category": "komputery",
+        "cpu": "Intel Core i5",
+        "ram": "8GB",
+        "os": "Windows 10",
+        "gpu": "NVIDIA GeForce GTX 1660",
+        "producent": "Unity",
+        "condition":"Nowe"
+    },
+    {
+        "id": 4,
+        "images": ["kowalski","kowalski-1","kowalski-2","kowalski-3","kowalski-4"],
+        "title": "Komputer Kowalski Core i7-14700K",
+        "price": 6789,
+        "category": "komputery",
+        "cpu": "Intel Core i7-14700K",
+        "ram": "32GB",
+        "os": "Windows 10",
+        "gpu": "NVIDIA GeForce RTX 3090",
+        "producent": "Kowalski",
+        "condition":"Nowe"
+    },
+    {
+        "id": 5,
+        "images": ["msi","msi-1","msi-2","msi-3","msi-4"],
+        "title": "Laptop MSI Thin GF63 12UCX-494XPL",
+        "price": 2499,
+        "category": "laptopy",
+        "cpu": "Intel Core i5",
+        "ram": "8GB",
+        "os": "Windows 10",
+        "gpu": "NVIDIA GeForce GTX 1650",
+        "producent": "MSI",
+        "condition":"Nowe"
+    },
+    {
+        "id": 6,
+        "images": ["giga","giga-1","giga-2","giga-3","giga-4"],
+        "title": "Laptop Gigabyte G5 MF i5-12500H",
+        "price": 3599,
+        "category": "laptopy",
+        "cpu": "Intel Core i5-12500H",
+        "ram": "16GB",
+        "os": "Windows 10",
+        "gpu": "NVIDIA GeForce RTX 3050",
+        "producent": "Gigabyte",
+        "condition":"Poleasingowe"
+    }
+]

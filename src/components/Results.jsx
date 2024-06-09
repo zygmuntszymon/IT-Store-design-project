@@ -1,35 +1,96 @@
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import Filter from "./Filter";
-import c_image from '../media/c1.jpg'
-import c_image1 from '../media/c2.jpg'
-import c_image2 from '../media/c3.jpg'
-import c_image3 from '../media/c4.jpg'
 import CardFull from './CardFull';
+import productsData from '../products.json'; // Importowanie pliku products.json
+
+import preyon from '../media/kategorie/komputery/preyon.jpg';
+import gamex from '../media/kategorie/komputery/gamex.jpg';
+import unity from '../media/kategorie/komputery/unity.jpg';
+
+const images = {
+    preyon,
+    gamex,
+    unity
+};
 
 export default function Results() {
+    const { category } = useParams();
+    const [products, setProducts] = useState([]);
+    const [filteredProducts, setFilteredProducts] = useState([]);
+    const [sortOption, setSortOption] = useState('cena-malejąco');
+
+    useEffect(() => {
+        // Ustawienie danych produktów na te z pliku JSON
+        setProducts(productsData);
+    }, []);
+
+    useEffect(() => {
+        if (category && products.length > 0) {
+            filterProducts(category);
+        }
+    }, [category, products]);
+
+    useEffect(() => {
+        sortProducts(sortOption);
+    }, [sortOption]);
+
+    useEffect(() => {
+        // Efekt do monitorowania zmian w filteredProducts i renderowania produktów
+        console.log('Filtered Products:', filteredProducts);
+    }, [filteredProducts]);
+
+    const filterProducts = (category) => {
+        const filtered = products.filter(product => product.category === category.toLowerCase());
+        setFilteredProducts(filtered);
+    };
+
+    const sortProducts = (option) => {
+        let sorted = [...filteredProducts]; // Tworzenie kopii tablicy filtrowanych produktów
+        switch (option) {
+            case 'cena-rosnąco':
+                sorted.sort((a, b) => a.price - b.price);
+                break;
+            case 'cena-malejąco':
+                sorted.sort((a, b) => b.price - a.price);
+                break;
+            default:
+                break;
+        }
+        setFilteredProducts(sorted);
+    };
+
+    const handleSortChange = (e) => {
+        setSortOption(e.target.value);
+    };
+
     return (
         <div className='!mx-auto max-w-[1300px] flex items-start justify-between flex-row !mt-4'>
-            <Filter />
+            <Filter products={filteredProducts} />
             <div className="">
                 <div className="text-[14px] p-2 float-right">
                     Sortowanie:
-                    <select name="" id="">
-                        <option value="" className="text-right">po popularności rosnąco</option>
-                        <option value="" className="text-right">po popularności malejąco</option>
-                        <option value="" className="text-right">po cenie rosnąco</option>
-                        <option value="" className="text-right">po cenie malejąco</option>
+                    <select name="sort" id="sort" onChange={handleSortChange}>
+                        <option value="cena-rosnąco" className="text-right">po cenie rosnąco</option>
+                        <option value="cena-malejąco" className="text-right">po cenie malejąco</option>
                     </select>
                 </div>
                 <br />
-                <CardFull image={c_image} title={"Monitor Xiaomi"} price={1299} />
-                <CardFull image={c_image1} title={"Monitor Lenovo"} price={1699} />
-                <CardFull image={c_image2} title={"Laptop MSI"} price={2349} />
-                <CardFull image={c_image3} title={"Laptop Aorus"} price={3999} />
-                <CardFull image={c_image1} title={"Monitor Lenovo"} price={1699} />
-                <CardFull image={c_image2} title={"Laptop MSI"} price={2349} />
-                <CardFull image={c_image3} title={"Laptop Aorus"} price={3999} />
-                <CardFull image={c_image} title={"Monitor Xiaomi"} price={1299} />
+
+                {filteredProducts.map(product => (
+                    <CardFull
+                        key={product.id}
+                        id={product.id}
+                        image={images[product.images[0]]}
+                        title={product.title}
+                        price={product.price}
+                        gpu={product.gpu}
+                        cpu={product.cpu}
+                        ram={products.ram}
+                        os={product.os}
+                    />
+                ))}
             </div>
         </div>
     )
-
 }

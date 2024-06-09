@@ -99,30 +99,30 @@ export default function Header() {
         <div className={`${isMenuOpen ? "" : "hidden"} !mt-14 sm:!mt-0 w-full flex items-center justify-center bg-gray-100`} id="header_2">
           <div className='max-w-[1300px] w-[80%] flex items-center justify-center flex-col sm:flex-row bg-gray-100  text-[13px]'>
             <div className='relative' onMouseEnter={() => { setDropdownOpen(true); setIsHovered(true); }} onMouseLeave={() => { setDropdownOpen(false); setIsHovered(false); }}>
-              <Link to="/results" className={`flex justify-center items-center text-center h-12 p-2 w-full border-b-2 sm:border-none sm:w-[130px] transition-all ${isHovered ? 'bg-white' : ''}`}>
+              <Link to="/results/komputery" className={`flex justify-center items-center text-center h-12 p-2 w-full border-b-2 sm:border-none sm:w-[130px] transition-all ${isHovered ? 'bg-white' : ''}`}>
                 Komputery
               </Link>
               {isDropdownOpen && (
                 <div className='absolute left-0 w-max bg-white shadow rounded-b-md' onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
-                  <Link to="/results" className='block py-2 px-4 hover:bg-gray-100'>Komputery stacjonarne</Link>
-                  <Link to="/results" className='block py-2 px-4 hover:bg-gray-100'>Monitory</Link>
-                  <Link to="/results" className='block py-2 px-4 hover:bg-gray-100'>Serwery</Link>
-                  <Link to="/results" className='block py-2 px-4 hover:bg-gray-100'>Komputery All-In-One</Link>
-                  <Link to="/results" className='block py-2 px-4 hover:bg-gray-100'>Gamingowe</Link>
-                  <Link to="/results" className='block py-2 px-4 hover:bg-gray-100 rounded-b-md'>Komputery Poleasingowe</Link>
+                  <Link to="/results/komputery" className='block py-2 px-4 hover:bg-gray-100'>Komputery stacjonarne</Link>
+                  <Link to="/results/komputery" className='block py-2 px-4 hover:bg-gray-100'>Monitory</Link>
+                  <Link to="/results/komputery" className='block py-2 px-4 hover:bg-gray-100'>Serwery</Link>
+                  <Link to="/results/komputery" className='block py-2 px-4 hover:bg-gray-100'>Komputery All-In-One</Link>
+                  <Link to="/results/komputery" className='block py-2 px-4 hover:bg-gray-100'>Gamingowe</Link>
+                  <Link to="/results/komputery" className='block py-2 px-4 hover:bg-gray-100 rounded-b-md'>Komputery Poleasingowe</Link>
                 </div>
               )}
             </div>
 
             <div className='relative' onMouseEnter={() => { setDropdown2Open(true); setIsHovered2(true); }} onMouseLeave={() => { setDropdown2Open(false); setIsHovered2(false); }}>
-              <Link to="/results" className={`flex justify-center items-center text-center h-12 p-2 w-full border-b-2 sm:border-none sm:w-[130px] transition-all ${isHovered2 ? 'bg-white' : ''}`}>
+              <Link to="/results/laptopy" className={`flex justify-center items-center text-center h-12 p-2 w-full border-b-2 sm:border-none sm:w-[130px] transition-all ${isHovered2 ? 'bg-white' : ''}`}>
                 Laptopy
               </Link>
               {isDropdown2Open && (
                 <div className='absolute left-0 w-max bg-white shadow rounded-b-md' onMouseEnter={() => setIsHovered2(true)} onMouseLeave={() => setIsHovered2(false)}>
-                  <Link to="/results" className='block py-2 px-4 hover:bg-gray-100'>Biznesowe</Link>
-                  <Link to="/results" className='block py-2 px-4 hover:bg-gray-100'>Gamingowe</Link>
-                  <Link to="/results" className='block py-2 px-4 hover:bg-gray-100 rounded-b-md'>Laptopy poleasingowe</Link>
+                  <Link to="/results/laptopy" className='block py-2 px-4 hover:bg-gray-100'>Biznesowe</Link>
+                  <Link to="/results/laptopy" className='block py-2 px-4 hover:bg-gray-100'>Gamingowe</Link>
+                  <Link to="/results/laptopy" className='block py-2 px-4 hover:bg-gray-100 rounded-b-md'>Laptopy poleasingowe</Link>
                 </div>
               )}
             </div>

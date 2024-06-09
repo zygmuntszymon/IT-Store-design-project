@@ -18,36 +18,15 @@ root.render(
       <Routes>
         <Route path='/' element={<Layout />}>
           <Route index element={<App />} />
+          <Route path='results/:category' element={<Results />} />
+          <Route path='konto' element={<AccountPage />} />
+          <Route path='login' element={<LoginPage />} />
+          <Route path='koszyk' element={<ShoppingCart />} />
+          <Route path='koszyk/dostawa' element={<Shipping />} />
+          <Route path='/produkt/:id' element={<Product />} />
         </Route>
-
-        <Route path='/results' element={<Layout />}>
-          <Route index element={<Results />} />
-        </Route>
-
-        <Route path='/pomoc' element={<Layout />}>
-        </Route>
-
-        <Route path='/konto' element={<Layout />}>
-          <Route index element={<AccountPage />} />
-        </Route>
-
-        <Route path='/login' element={<Layout />}>
-          <Route index element={<LoginPage />} />
-        </Route>
-
-        <Route path='/koszyk' element={<Layout />}>
-          <Route index element={<ShoppingCart />} />
-        </Route>
-
-        <Route path='/koszyk/dostawa' element={<Layout />}>
-          <Route index element={<Shipping />} />
-        </Route>
-
-        <Route path='/produkt' element={<Layout />}>
-          <Route index element={<Product />} />
-        </Route>
+        <Route path='/pomoc' element={<Layout />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
 );
-

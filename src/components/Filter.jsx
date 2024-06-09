@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 
-export default function Filter() {
+export default function Filter({ products }) {
     const [minPrice, setMinPrice] = useState(90);
     const [maxPrice, setMaxPrice] = useState(500);
 
@@ -12,6 +12,10 @@ export default function Filter() {
     const handleMaxPriceChange = (event) => {
         setMaxPrice(parseInt(event.target.value));
     };
+
+    const manufacturers = [...new Set(products.map(product => product.producent))];
+    const conditions = [...new Set(products.map(product => product.condition))];
+
     return (
 
 
@@ -41,56 +45,26 @@ export default function Filter() {
                 step="10"
             />
             <div className="w-[80%] text-left !mt-4">
-                <span className='w-full text-[18px]'>Producenci:</span>
-                <br />
-                <label>
-                    <input type="checkbox" name="brand" value="Lenovo" />
-                    Lenovo (12)
-                </label>
-                <br />
-                <label>
-                    <input type="checkbox" name="brand" value="Xiaomi" />
-                    Xiaomi (3)
-                </label>
-                <br />
-                <label>
-                    <input type="checkbox" name="brand" value="LG" />
-                    LG (8)
-                </label>
-                <br />
-                <label>
-                    <input type="checkbox" name="brand" value="Samsung" />
-                    Samsung (2)
-                </label>
-                <br />
-                <label>
-                    <input type="checkbox" name="brand" value="Asus" />
-                    Asus (22)
-                </label>
-                <br />
-                <label>
-                    <input type="checkbox" name="brand" value="Acer" />
-                    Acer (1)
-                </label>
+            <span>Producenci:</span>
+                {manufacturers.map((manufacturer, index) => (
+                    <div key={index}>
+                        <label>
+                            <input type="checkbox" name="brand" value={manufacturer} />
+                            {manufacturer} ({products.filter(product => product.producent === manufacturer).length})
+                        </label>
+                    </div>
+                ))}
             </div>
             <div className="w-[80%] text-left !mt-4">
-            <span className='w-full text-[18px]'>Stan:</span>
-            <br />
-                <label>
-                    <input type="checkbox" name="stan" value="nowe" />
-                    Nowe (19)
-                </label>
-                <br />
-                <label>
-                    <input type="checkbox" name="stan" value="uzywane" />
-                    Używane (8)
-                </label>
-                <br />
-                <label>
-                    <input type="checkbox" name="stan" value="poleasingowe" />
-                    Poleasingowe (11)
-                </label>
-                <br />
+            <span>Stan:</span>
+                {conditions.map((condition, index) => (
+                    <div key={index}>
+                        <label>
+                            <input type="checkbox" name="condition" value={condition} />
+                            {condition} ({products.filter(product => product.condition === condition).length})
+                        </label>
+                    </div>
+                ))}
             </div>
             <button className='!mt-4 w-[80%] py-2 bg-violet-800 hover:bg-violet-900 text-white rounded-md'>Filtruj</button>
         </div>
