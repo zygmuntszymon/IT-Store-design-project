@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import productsData from '../products.json';
-import { addToCart, getCart, removeFromCart, clearCart } from '../cart';
+import { addToCart} from '../cart';
 
 const images = {
   "preyon": require('../media/kategorie/komputery/preyon.jpg'),
@@ -19,6 +19,21 @@ const images = {
   "unity-2": require('../media/kategorie/komputery/unity-2.jpg'),
   "unity-3": require('../media/kategorie/komputery/unity-3.jpg'),
   "unity-4": require('../media/kategorie/komputery/unity-4.jpg'),
+  "kowalski": require('../media/kategorie/komputery/kowalski.jpg'),
+  "kowalski-1": require('../media/kategorie/komputery/kowalski-1.jpg'),
+  "kowalski-2": require('../media/kategorie/komputery/kowalski-2.jpg'),
+  "kowalski-3": require('../media/kategorie/komputery/kowalski-3.jpg'),
+  "kowalski-4": require('../media/kategorie/komputery/kowalski-4.jpg'),
+  "giga": require('../media/kategorie/laptopy/giga.jpg'),
+  "giga-1": require('../media/kategorie/laptopy/giga-1.jpg'),
+  "giga-2": require('../media/kategorie/laptopy/giga-2.jpg'),
+  "giga-3": require('../media/kategorie/laptopy/giga-3.jpg'),
+  "giga-4": require('../media/kategorie/laptopy/giga-4.jpg'),
+  "msi": require('../media/kategorie/laptopy/msi.jpg'),
+  "msi-1": require('../media/kategorie/laptopy/msi-1.jpg'),
+  "msi-2": require('../media/kategorie/laptopy/msi-2.jpg'),
+  "msi-3": require('../media/kategorie/laptopy/msi-3.jpg'),
+  "msi-4": require('../media/kategorie/laptopy/msi-4.jpg'),
 };
 
 export default function Product() {

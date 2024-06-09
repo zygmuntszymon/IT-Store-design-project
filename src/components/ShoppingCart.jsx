@@ -18,6 +18,21 @@ const images = {
     "unity-2": require('../media/kategorie/komputery/unity-2.jpg'),
     "unity-3": require('../media/kategorie/komputery/unity-3.jpg'),
     "unity-4": require('../media/kategorie/komputery/unity-4.jpg'),
+    "kowalski": require('../media/kategorie/komputery/kowalski.jpg'),
+    "kowalski-1": require('../media/kategorie/komputery/kowalski-1.jpg'),
+    "kowalski-2": require('../media/kategorie/komputery/kowalski-2.jpg'),
+    "kowalski-3": require('../media/kategorie/komputery/kowalski-3.jpg'),
+    "kowalski-4": require('../media/kategorie/komputery/kowalski-4.jpg'),
+    "giga": require('../media/kategorie/laptopy/giga.jpg'),
+    "giga-1": require('../media/kategorie/laptopy/giga-1.jpg'),
+    "giga-2": require('../media/kategorie/laptopy/giga-2.jpg'),
+    "giga-3": require('../media/kategorie/laptopy/giga-3.jpg'),
+    "giga-4": require('../media/kategorie/laptopy/giga-4.jpg'),
+    "msi": require('../media/kategorie/laptopy/msi.jpg'),
+    "msi-1": require('../media/kategorie/laptopy/msi-1.jpg'),
+    "msi-2": require('../media/kategorie/laptopy/msi-2.jpg'),
+    "msi-3": require('../media/kategorie/laptopy/msi-3.jpg'),
+    "msi-4": require('../media/kategorie/laptopy/msi-4.jpg'),
 };
 
 export default function ShoppingCart() {
@@ -61,13 +76,17 @@ export default function ShoppingCart() {
 
                         }
                         {cart.map((product, index) => (
-                            <div className='flex flex-row justify-between items-center px-4 py-4 border-b-2' key={product.id}>
-                                <img src={images[product.images[0]]} className='w-[120px]'></img>
-                                <div className='w-[600px] text-left !pl-8'>
+                            <div className='flex flex-row justify-center items-center px-4 py-4 border-b-[1px]' key={product.id}>
+                                <div className='flex items-center justify-center p-2 w-[130px]'>
+                                    <img src={images[product.images[0]]} className='h-[80px]'></img>
+                                </div>
+
+
+                                <div className='w-[500px] text-left !pl-8'>
                                     <p>{product.title}</p>
                                 </div>
                                 <div className='flex flex-row items-center justify-center'>
-                                    <span className='!mr-4 text-lg w-max'>{product.price}zł</span>
+                                    <span className='!mr-4 text-lg w-max'>{product.price}.00zł</span>
                                     <input type="number" className='border-2 w-[40px] text-center !mr-4 rounded-lg' value={1} />
                                     <svg class="w-6 h-6 text-gray-800 hover:text-gray-400 cursor-pointer" onClick={() => handleRemoveFromCart(index)} aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
                                         <path fill-rule="evenodd" d="M8.586 2.586A2 2 0 0 1 10 2h4a2 2 0 0 1 2 2v2h3a1 1 0 1 1 0 2v12a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V8a1 1 0 0 1 0-2h3V4a2 2 0 0 1 .586-1.414ZM10 6h4V4h-4v2Zm1 4a1 1 0 1 0-2 0v8a1 1 0 1 0 2 0v-8Zm4 0a1 1 0 1 0-2 0v8a1 1 0 1 0 2 0v-8Z" clip-rule="evenodd" />

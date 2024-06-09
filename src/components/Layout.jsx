@@ -1,5 +1,6 @@
 import { Outlet, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { getCart } from '../cart';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(window.innerWidth >= 768);
@@ -7,6 +8,7 @@ export default function Header() {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+  const [cartItems, setCartItems] = useState([]);
 
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
@@ -44,6 +46,10 @@ export default function Header() {
     };
   }, []);
 
+  useEffect(() => {
+    const cart = getCart();
+    setCartItems(cart);
+  }, []);
 
   return (
     <div className='app'>
@@ -82,13 +88,13 @@ export default function Header() {
               </div>
             </Link>
             <Link to="/koszyk">
-              <div className='flex flex-col p-2 items-center justify-between w-[80px] text-[13px] rounded-lg transition-all hover:bg-gray-100'>
-                <svg class="w-6 h-6 text-gray-800 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 4h1.5L9 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-8.5-3h9.25L19 7H7.312" />
-                </svg>
-                <span>Koszyk</span>
-              </div>
-            </Link>
+            <div className={`flex flex-col p-2 items-center justify-between w-[80px] text-[13px] rounded-lg transition-all hover:bg-gray-100 ${cartItems.length > 0 ? 'text-violet-700' : ''}`}>
+              <svg className={`w-6 h-6  ${cartItems.length > 0 ? 'text-violet-700' : 'text-gray-800'}`} aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 4h1.5L9 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-8.5-3h9.25L19 7H7.312" />
+              </svg>
+              <span>Koszyk</span>
+            </div>
+          </Link>
             <button className='flex sm:hidden flex-col p-2 items-center justify-between w-[80px] text-[13px] rounded-lg transition-all hover:bg-gray-100' onClick={toggleMenu}>
               <svg class="w-8 h-12 text-black " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                 <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h14" />

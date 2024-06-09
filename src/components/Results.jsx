@@ -7,26 +7,43 @@ import productsData from '../products.json';
 import preyon from '../media/kategorie/komputery/preyon.jpg';
 import gamex from '../media/kategorie/komputery/gamex.jpg';
 import unity from '../media/kategorie/komputery/unity.jpg';
+import kowalski from '../media/kategorie/komputery/kowalski.jpg';
+import giga from '../media/kategorie/laptopy/giga.jpg';
+import msi from '../media/kategorie/laptopy/msi.jpg';
 
 const images = {
     preyon,
     gamex,
-    unity
+    unity,
+    kowalski,
+    giga,
+    msi
 };
 
 
 export default function Results() {
     const { category } = useParams();
     const [products, setProducts] = useState([]);
+    const [allProducts, setAllProducts] = useState([]);
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [sortOption, setSortOption] = useState('cena-malejąco');
 
-    const handleFilter = (selectedManufacturers, selectedConditions) => {
-        const filtered = products.filter(product => selectedManufacturers.includes(product.producent) && selectedConditions.includes(product.condition));
+
+    const handleFilter = (selectedManufacturers, selectedConditions, minPrice, maxPrice) => {
+        const filtered = allProducts.filter(product =>
+            (selectedManufacturers.length === 0 || selectedManufacturers.includes(product.producent)) &&
+            (selectedConditions.length === 0 || selectedConditions.includes(product.condition)) &&
+            product.price >= minPrice &&
+            product.price <= maxPrice
+        );
+        setProducts(filtered);
         setFilteredProducts(filtered);
     };
+    
+    
 
     useEffect(() => {
+        setAllProducts(productsData);
         setProducts(productsData);
     }, []);
 
@@ -70,7 +87,7 @@ export default function Results() {
 
     return (
         <div className='!mx-auto max-w-[1300px] flex items-start justify-between flex-row !mt-4'>
-        <Filter products={filteredProducts} onFilter={handleFilter} />
+        <Filter products={allProducts} onFilter={handleFilter} category={category} />
             <div className="">
                 <div className="text-[14px] p-2 float-right">
                     Sortowanie:
@@ -90,7 +107,7 @@ export default function Results() {
                         price={product.price}
                         gpu={product.gpu}
                         cpu={product.cpu}
-                        ram={products.ram}
+                        ram={product.ram}
                         os={product.os}
                     />
                 ))}

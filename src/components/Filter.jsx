@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 
 
-export default function Filter({ products, onFilter }) {
+export default function Filter({ products, onFilter, category, condition }) {
     const [minPrice, setMinPrice] = useState(90);
     const [maxPrice, setMaxPrice] = useState(500);
+
+    const maxProductPrice = Math.max(...products.map(product => product.price));
 
     const handleMinPriceChange = (event) => {
         setMinPrice(parseInt(event.target.value));
@@ -13,8 +15,8 @@ export default function Filter({ products, onFilter }) {
         setMaxPrice(parseInt(event.target.value));
     };
 
-    const manufacturers = [...new Set(products.map(product => product.producent))];
-    const conditions = [...new Set(products.map(product => product.condition))];
+    const manufacturers = [...new Set(products.filter(product => product.category === category).map(product => product.producent))];
+    const conditions = [...new Set(products.filter(product => product.category === category).map(product => product.condition))];
 
     const [selectedManufacturers, setSelectedManufacturers] = useState([]);
     const [selectedConditions, setSelectedConditions] = useState([]);
@@ -30,7 +32,7 @@ export default function Filter({ products, onFilter }) {
     };
 
     const handleFilter = () => {
-        onFilter(selectedManufacturers, selectedConditions);
+        onFilter(selectedManufacturers, selectedConditions, minPrice, maxPrice);
     };
     return (
 
@@ -45,9 +47,11 @@ export default function Filter({ products, onFilter }) {
                 type="range"
                 id="minPrice"
                 min="0"
-                max="2133"
+                max={maxProductPrice}
                 value={minPrice}
-                onChange={handleMinPriceChange}
+                onChange={(event) => {
+                    handleMinPriceChange(event);
+                }}
                 step="10"
             />
             <label htmlFor="maxPrice">Cena do: <span className='font-bold'>{maxPrice}</span></label>
@@ -55,13 +59,15 @@ export default function Filter({ products, onFilter }) {
                 type="range"
                 id="maxPrice"
                 min="0"
-                max="2133"
+                max={maxProductPrice}
                 value={maxPrice}
-                onChange={handleMaxPriceChange}
+                onChange={(event) => {
+                    handleMaxPriceChange(event);
+                }}
                 step="10"
             />
             <div className="w-[80%] text-left !mt-4">
-            <span>Producenci:</span>
+                <span>Producenci:</span>
                 {manufacturers.map((manufacturer, index) => (
                     <div key={index}>
                         <label>
@@ -72,7 +78,7 @@ export default function Filter({ products, onFilter }) {
                 ))}
             </div>
             <div className="w-[80%] text-left !mt-4">
-            <span>Stan:</span>
+                <span>Stan:</span>
                 {conditions.map((condition, index) => (
                     <div key={index}>
                         <label>
