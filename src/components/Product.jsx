@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import productsData from '../products.json'; // Importowanie pliku products.json
+import productsData from '../products.json';
 import { addToCart, getCart, removeFromCart, clearCart } from '../cart';
 
 const images = {
@@ -23,8 +23,8 @@ const images = {
 
 export default function Product() {
   
-  const { id } = useParams(); // Pobierz identyfikator produktu z adresu URL
-  const product = productsData.find(product => product.id === parseInt(id)); // Znajdź produkt zgodny z identyfikatorem
+  const { id } = useParams(); 
+  const product = productsData.find(product => product.id === parseInt(id)); 
 
 
   const [selectedRam, setSelectedRam] = useState('16 GB');
@@ -32,7 +32,7 @@ export default function Product() {
   const [selectedOs, setSelectedOs] = useState('Windows 11');
 
   const handleAddToCart = () => {
-    addToCart(product); // Dodaj produkt do koszyka
+    addToCart(product); 
   };
 
   return (

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 
-export default function Filter({ products }) {
+export default function Filter({ products, onFilter }) {
     const [minPrice, setMinPrice] = useState(90);
     const [maxPrice, setMaxPrice] = useState(500);
 
@@ -16,6 +16,22 @@ export default function Filter({ products }) {
     const manufacturers = [...new Set(products.map(product => product.producent))];
     const conditions = [...new Set(products.map(product => product.condition))];
 
+    const [selectedManufacturers, setSelectedManufacturers] = useState([]);
+    const [selectedConditions, setSelectedConditions] = useState([]);
+
+    const handleManufacturerChange = (event) => {
+        const { value, checked } = event.target;
+        setSelectedManufacturers(prevState => checked ? [...prevState, value] : prevState.filter(manufacturer => manufacturer !== value));
+    };
+
+    const handleConditionChange = (event) => {
+        const { value, checked } = event.target;
+        setSelectedConditions(prevState => checked ? [...prevState, value] : prevState.filter(condition => condition !== value));
+    };
+
+    const handleFilter = () => {
+        onFilter(selectedManufacturers, selectedConditions);
+    };
     return (
 
 
@@ -49,7 +65,7 @@ export default function Filter({ products }) {
                 {manufacturers.map((manufacturer, index) => (
                     <div key={index}>
                         <label>
-                            <input type="checkbox" name="brand" value={manufacturer} />
+                            <input type="checkbox" name="brand" value={manufacturer} onChange={handleManufacturerChange} />
                             {manufacturer} ({products.filter(product => product.producent === manufacturer).length})
                         </label>
                     </div>
@@ -60,13 +76,13 @@ export default function Filter({ products }) {
                 {conditions.map((condition, index) => (
                     <div key={index}>
                         <label>
-                            <input type="checkbox" name="condition" value={condition} />
+                            <input type="checkbox" name="condition" value={condition} onChange={handleConditionChange} />
                             {condition} ({products.filter(product => product.condition === condition).length})
                         </label>
                     </div>
                 ))}
             </div>
-            <button className='!mt-4 w-[80%] py-2 bg-violet-800 hover:bg-violet-900 text-white rounded-md'>Filtruj</button>
+            <button onClick={handleFilter} className='!mt-4 w-[80%] py-2 bg-violet-800 hover:bg-violet-900 text-white rounded-md'>Filtruj</button>
         </div>
 
     )

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Filter from "./Filter";
 import CardFull from './CardFull';
-import productsData from '../products.json'; // Importowanie pliku products.json
+import productsData from '../products.json';
 
 import preyon from '../media/kategorie/komputery/preyon.jpg';
 import gamex from '../media/kategorie/komputery/gamex.jpg';
@@ -14,14 +14,19 @@ const images = {
     unity
 };
 
+
 export default function Results() {
     const { category } = useParams();
     const [products, setProducts] = useState([]);
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [sortOption, setSortOption] = useState('cena-malejąco');
 
+    const handleFilter = (selectedManufacturers, selectedConditions) => {
+        const filtered = products.filter(product => selectedManufacturers.includes(product.producent) && selectedConditions.includes(product.condition));
+        setFilteredProducts(filtered);
+    };
+
     useEffect(() => {
-        // Ustawienie danych produktów na te z pliku JSON
         setProducts(productsData);
     }, []);
 
@@ -36,7 +41,6 @@ export default function Results() {
     }, [sortOption]);
 
     useEffect(() => {
-        // Efekt do monitorowania zmian w filteredProducts i renderowania produktów
         console.log('Filtered Products:', filteredProducts);
     }, [filteredProducts]);
 
@@ -46,7 +50,7 @@ export default function Results() {
     };
 
     const sortProducts = (option) => {
-        let sorted = [...filteredProducts]; // Tworzenie kopii tablicy filtrowanych produktów
+        let sorted = [...filteredProducts];
         switch (option) {
             case 'cena-rosnąco':
                 sorted.sort((a, b) => a.price - b.price);
@@ -66,7 +70,7 @@ export default function Results() {
 
     return (
         <div className='!mx-auto max-w-[1300px] flex items-start justify-between flex-row !mt-4'>
-            <Filter products={filteredProducts} />
+        <Filter products={filteredProducts} onFilter={handleFilter} />
             <div className="">
                 <div className="text-[14px] p-2 float-right">
                     Sortowanie:
