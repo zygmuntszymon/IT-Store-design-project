@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
-import { getCart, removeFromCart, clearCart } from '../cart';
-import { useState, useEffect } from 'react';
+import { getCart } from '../cart';
+import { useState, useEffect, useCallback  } from 'react';
+
 
 const images = {
     "preyon": require('../media/kategorie/komputery/preyon.jpg'),
@@ -33,24 +34,38 @@ const images = {
     "msi-2": require('../media/kategorie/laptopy/msi-2.jpg'),
     "msi-3": require('../media/kategorie/laptopy/msi-3.jpg'),
     "msi-4": require('../media/kategorie/laptopy/msi-4.jpg'),
+    "hp": require('../media/kategorie/laptopy/hp.jpg'),
+    "hp-1": require('../media/kategorie/laptopy/hp-1.jpg'),
+    "hp-2": require('../media/kategorie/laptopy/hp-2.jpg'),
+    "hp-3": require('../media/kategorie/laptopy/hp-3.jpg'),
+    "hp-4": require('../media/kategorie/laptopy/hp-4.jpg'),
+    "lenovo": require('../media/kategorie/laptopy/lenovo.jpg'),
+    "lenovo-1": require('../media/kategorie/laptopy/lenovo-1.jpg'),
+    "lenovo-2": require('../media/kategorie/laptopy/lenovo-2.jpg'),
+    "lenovo-3": require('../media/kategorie/laptopy/lenovo-3.jpg'),
+    "lenovo-4": require('../media/kategorie/laptopy/lenovo-4.jpg'),
 };
 
 export default function ShoppingCart() {
-    const [cart, setCart] = useState(getCart());
+    const [cart, setCart] = useState([]);
     const totalCost = cart.reduce((total, product) => total + product.price, 0);
-
-    const handleRemoveFromCart = (index) => {
-        removeFromCart(index);
-        setCart(getCart());
-    };
-
-    const handleClearCart = () => {
-        clearCart();
-        setCart(getCart());
-    };
 
     useEffect(() => {
         setCart(getCart());
+    }, []);
+
+    const handleRemoveFromCart = useCallback((index) => {
+        setCart(prevCart => {
+            const newCart = [...prevCart];
+            newCart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(newCart));
+            return newCart;
+        });
+    }, []);
+
+    const handleClearCart = useCallback(() => {
+        localStorage.removeItem('cart');
+        setCart([]);
     }, []);
 
     return (

@@ -42,9 +42,9 @@ export default function Filter({ products, onFilter, category }) {
         <div className="!mt-9 w-1/5 p-4 text-right flex flex-col justify-between items-center border-r-[2px] text-[14px]">
             <b className='text-[18px] !mb-4'>Filtrowanie</b>
             <label htmlFor="minPrice">Cena od: <span className='font-bold'>{filters.minPrice}</span></label>
-            <input type="range" id="minPrice" name="minPrice" min="0" max={filters.maxPrice} value={filters.minPrice} onChange={handleFilterChange} step="10" />
+            <input type="range" id="minPrice" name="minPrice" min="0" max={10000} value={filters.minPrice} onChange={handleFilterChange} step={100}/>
             <label htmlFor="maxPrice">Cena do: <span className='font-bold'>{filters.maxPrice}</span></label>
-            <input type="range" id="maxPrice" name="maxPrice" min="0" max={filters.maxPrice} value={filters.maxPrice} onChange={handleFilterChange} step="10" />
+            <input type="range" id="maxPrice" name="maxPrice" min="0" max={10000} value={filters.maxPrice} onChange={handleFilterChange} step={100}/>
             <div className="w-[80%] text-left !mt-4">
                 <span>Producenci:</span>
                 {manufacturers.map((manufacturer, index) => (

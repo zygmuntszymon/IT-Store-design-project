@@ -1,9 +1,12 @@
 import { Link } from 'react-router-dom';
-
-
+import { addToCart} from '../cart';
+import productsData from '../products.json';
 
 export default function CardFull({ id, image, title, price,gpu,ram,cpu,os }) {
-
+    const handleAddToCart = () => {
+        let product = productsData.find(product => product.id === parseInt(id)); 
+        addToCart(product); 
+      };
     return (
         <Link to={`/produkt/${id}`}>
             <div className="!mx-auto w-[1000px] h-[250px] bg-white rounded-lg flex flex-row justify-between items-center py-2 border-[1px] !mb-4 transition hover:border-gray-600">
@@ -43,7 +46,7 @@ export default function CardFull({ id, image, title, price,gpu,ram,cpu,os }) {
                         <p>U ciebie za 3 dni</p>
                     </div>
 
-                    <a href='/koszyk' className='!mt-4 px-8 py-3 bg-violet-800 hover:bg-violet-900 text-white rounded-md z-[1000]'>Dodaj do koszyka</a>
+                    <button onClick={handleAddToCart}className='!mt-4 px-8 py-3 bg-violet-800 hover:bg-violet-900 text-white rounded-md z-[1000]'>Dodaj do koszyka</button>
                 </div>
             </div>
         </Link>

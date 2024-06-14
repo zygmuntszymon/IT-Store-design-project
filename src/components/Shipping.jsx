@@ -1,11 +1,30 @@
 import { Link } from 'react-router-dom';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { addToCart, getCart, calculateCartTotal } from '../cart'; 
 
 export default function ShoppingCart() {
-
     const [selectedDelivery, setSelectedDelivery] = useState('kurier');
     const [selectedPayment, setSelectedPayment] = useState('blik');
+    const [cart, setCart] = useState([]);
 
+    useEffect(() => {
+        setCart(getCart());
+    }, []);
+
+    const deliveryCosts = {
+        'kurier': 16.00,
+        'salon': 0.00,
+        'inpost': 20.00
+    };
+    const paymentCosts = {
+        'przelew': 0.00,
+        'blik': 3.00,
+        'payu': 0.00,
+        'raty':0.00,
+        'przy_odbiorze':10.00
+    };
+    const totalProductCost = cart.reduce((total, product) => total + product.price, 0);
+    const totalCost = totalProductCost + deliveryCosts[selectedDelivery] + paymentCosts[selectedPayment];
     return (
         <div className="w-full flex flex-row justify-center items-center !pt-[20px]">
             <div className="!mx-auto w-[1300px] flex justify-between items-center flex-col">
@@ -64,7 +83,7 @@ export default function ShoppingCart() {
                                 onClick={() => setSelectedPayment('blik')}
                             >
                                 <input type="radio" checked={selectedPayment === 'blik'} className='!mr-4' readOnly />
-                                <p>BLIK <span className='text-gray-500'>1,53zł</span></p>
+                                <p>BLIK <span className='text-gray-500'>2,00zł</span></p>
                             </div>
                             <div
                                 className={`w-[600px] text-left border-2 p-3 flex flex-row cursor-pointer ${selectedPayment === 'payu' ? 'border-violet-700 border-t-2 border-b-2 bg-gray-100' : selectedPayment !== 'blik' && selectedPayment !== 'payu' ? 'border-t-0 hover:bg-gray-100' : 'border-t-2 hover:bg-gray-100'}`}
@@ -81,36 +100,13 @@ export default function ShoppingCart() {
                                 <p>Raty <span className='text-gray-500'>(bezpłatne)</span></p>
                             </div>
                             <div
-                                className={`w-[600px] text-left border-2 p-3 flex flex-row cursor-pointer ${selectedPayment === 'odbior' ? 'border-violet-700 border-t-2 bg-gray-100' : selectedPayment !== 'raty' && selectedPayment !== 'odbior' ? 'border-t-0 hover:bg-gray-100' : 'border-t-2'}`}
-                                onClick={() => setSelectedPayment('odbior')}
+                                className={`w-[600px] text-left border-2 p-3 flex flex-row cursor-pointer ${selectedPayment === 'przy_odbiorze' ? 'border-violet-700 border-t-2 bg-gray-100' : selectedPayment !== 'raty' && selectedPayment !== 'przy_odbiorze' ? 'border-t-0 hover:bg-gray-100' : 'border-t-2'}`}
+                                onClick={() => setSelectedPayment('przy_odbiorze')}
                             >
-                                <input type="radio" checked={selectedPayment === 'odbior'} className='!mr-4' readOnly />
+                                <input type="radio" checked={selectedPayment === 'przy_odbiorze'} className='!mr-4' readOnly />
                                 <p>Przy odbiorze <span className='text-gray-500'>10,00zł</span></p>
                             </div>
                         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                         <p className="w-full text-[20px] font-bold !mt-8 px-4">3. Dane do wysyłki</p>
 
                         <div className="w-full">
@@ -144,7 +140,7 @@ export default function ShoppingCart() {
                     <div className='!ml-10 w-[30%] h-max border-2 rounded-lg p-6 flex flex-col items-center justify-start'>
                         <div className='w-full flex flex-row justify-between items-center font-bold text-[18px]'>
                             <p>Łączna kwota</p>
-                            <p>2 676,53</p>
+                            <p>{totalCost},00 zł</p>
                         </div>
                         <Link className='w-full' to='dostawa'>
                             <button className="!mt-4 w-full h-[42px] bg-violet-700 rounded-lg text-white transition hover:bg-violet-600 ">Przejdź do podsumowania <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">

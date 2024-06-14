@@ -16,6 +16,7 @@ export default function Card({ id, image, title, price }) {
     const handleClick = () => {
         navigate(`/produkt/${id}`);
     };
+
     return (
         <div className="!mx-auto w-[250px] h-[300px] bg-white rounded-lg flex flex-col justify-between items-center py-4 hover:shadow-md">
             <img src={image} alt={title} className='h-[150px]' />
