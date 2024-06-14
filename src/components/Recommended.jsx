@@ -1,11 +1,28 @@
 import Card from "./Card";
-import c_image from '../media/c1.jpg'
-import c_image1 from '../media/c2.jpg'
-import c_image2 from '../media/c3.jpg'
-import c_image3 from '../media/c4.jpg'
+import products from '../products.json';
+import React, { useEffect, useState } from 'react';
 import c_smartwatch from '../media/smartwatch.png'
 
+const images = {
+    "preyon": require('../media/kategorie/komputery/preyon.jpg'),
+    "gamex": require('../media/kategorie/komputery/gamex.jpg'),
+    "unity": require('../media/kategorie/komputery/unity.jpg'),
+    "kowalski": require('../media/kategorie/komputery/kowalski.jpg'),
+    "giga": require('../media/kategorie/laptopy/giga.jpg'),
+    "msi": require('../media/kategorie/laptopy/msi.jpg'),
+    "hp": require('../media/kategorie/laptopy/hp.jpg'),
+    "lenovo": require('../media/kategorie/laptopy/lenovo.jpg')
+  };
+
+
 export default function Recommended() {
+
+    const [productData, setProductData] = useState([]);
+
+    useEffect(() => {
+        setProductData(products);
+    }, []);
+
     return (
         <div>
             <div className="bg-white text-black w-full max-w-[1300px] pt-4 !mt-10 !mx-auto sm:pl-[350px] flex items-center justify-start border-t-2">
@@ -27,14 +44,15 @@ export default function Recommended() {
                 </div>
 
                 <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                    <Card image={c_image} title={"Monitor Xiaomi"} price={1299} />
-                    <Card image={c_image1} title={"Monitor Lenovo"} price={1699} />
-                    <Card image={c_image2} title={"Laptop MSI"} price={2349} />
-                    <Card image={c_image3} title={"Laptop Aorus"} price={3999} />
-                    <Card image={c_image1} title={"Monitor Lenovo"} price={1699} />
-                    <Card image={c_image2} title={"Laptop MSI"} price={2349} />
-                    <Card image={c_image3} title={"Laptop Aorus"} price={3999} />
-                    <Card image={c_image} title={"Monitor Xiaomi"} price={1299} />
+                    {productData.map(product => (
+                        <Card
+                            key={product.id}
+                            id={product.id}
+                            image={images[product.images[0]]}
+                            title={product.title}
+                            price={product.price}
+                        />
+                    ))}
                     <br />
                     <span></span>
                     <br />

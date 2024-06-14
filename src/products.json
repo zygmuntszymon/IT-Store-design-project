@@ -41,7 +41,7 @@
     {
         "id": 4,
         "images": ["kowalski","kowalski-1","kowalski-2","kowalski-3","kowalski-4"],
-        "title": "Komputer Kowalski Core i7-14700K",
+        "title": "Komputer Kowalski Core i7",
         "price": 6789,
         "category": "komputery",
         "cpu": "Intel Core i7-14700K",
@@ -54,7 +54,7 @@
     {
         "id": 5,
         "images": ["msi","msi-1","msi-2","msi-3","msi-4"],
-        "title": "Laptop MSI Thin GF63 12UCX-494XPL",
+        "title": "Laptop MSI Thin GF63",
         "price": 2499,
         "category": "laptopy",
         "cpu": "Intel Core i5",
@@ -67,7 +67,7 @@
     {
         "id": 6,
         "images": ["giga","giga-1","giga-2","giga-3","giga-4"],
-        "title": "Laptop Gigabyte G5 MF i5-12500H",
+        "title": "Laptop Gigabyte G5 MF",
         "price": 3599,
         "category": "laptopy",
         "cpu": "Intel Core i5-12500H",
@@ -76,5 +76,32 @@
         "gpu": "NVIDIA GeForce RTX 3050",
         "producent": "Gigabyte",
         "condition":"Poleasingowe"
+    },
+    {
+        "id": 7,
+        "images": ["hp","hp-1","hp-2","hp-3","hp-4"],
+        "title": "Laptop HP 255 G9 Ryzen",
+        "price": 1549,
+        "category": "laptopy",
+        "cpu": "Ryzen 5 5625U",
+        "ram": "8GB",
+        "os": "Windows 11",
+        "gpu": "AMD Radeon RX Vega 7",
+        "producent": "HP",
+        "condition":"Nowe"
+    }
+    ,
+    {
+        "id": 7,
+        "images": ["lenovo","lenovo-1","lenovo-2","lenovo-3","lenovo-4"],
+        "title": "Laptop Lenovo Legion 5 15ARH7",
+        "price": 3299,
+        "category": "laptopy",
+        "cpu": "Ryzen 5 6600H",
+        "ram": "16GB",
+        "os": "Windows 11",
+        "gpu": "NVIDIA GeForce RTX 3050",
+        "producent": "HP",
+        "condition":"Nowe"
     }
 ]

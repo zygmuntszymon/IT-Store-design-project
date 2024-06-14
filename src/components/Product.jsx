@@ -34,6 +34,16 @@ const images = {
   "msi-2": require('../media/kategorie/laptopy/msi-2.jpg'),
   "msi-3": require('../media/kategorie/laptopy/msi-3.jpg'),
   "msi-4": require('../media/kategorie/laptopy/msi-4.jpg'),
+  "hp": require('../media/kategorie/laptopy/hp.jpg'),
+  "hp-1": require('../media/kategorie/laptopy/hp-1.jpg'),
+  "hp-2": require('../media/kategorie/laptopy/hp-2.jpg'),
+  "hp-3": require('../media/kategorie/laptopy/hp-3.jpg'),
+  "hp-4": require('../media/kategorie/laptopy/hp-4.jpg'),
+  "lenovo": require('../media/kategorie/laptopy/lenovo.jpg'),
+  "lenovo-1": require('../media/kategorie/laptopy/lenovo-1.jpg'),
+  "lenovo-2": require('../media/kategorie/laptopy/lenovo-2.jpg'),
+  "lenovo-3": require('../media/kategorie/laptopy/lenovo-3.jpg'),
+  "lenovo-4": require('../media/kategorie/laptopy/lenovo-4.jpg'),
 };
 
 export default function Product() {
