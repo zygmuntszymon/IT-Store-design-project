@@ -92,7 +92,7 @@
     }
     ,
     {
-        "id": 7,
+        "id": 8,
         "images": ["lenovo","lenovo-1","lenovo-2","lenovo-3","lenovo-4"],
         "title": "Laptop Lenovo Legion 5 15ARH7",
         "price": 3299,
@@ -101,7 +101,7 @@
         "ram": "16GB",
         "os": "Windows 11",
         "gpu": "NVIDIA GeForce RTX 3050",
-        "producent": "HP",
+        "producent": "Lenovo",
         "condition":"Nowe"
     }
 ]

@@ -10,6 +10,8 @@ import unity from '../media/kategorie/komputery/unity.jpg';
 import kowalski from '../media/kategorie/komputery/kowalski.jpg';
 import giga from '../media/kategorie/laptopy/giga.jpg';
 import msi from '../media/kategorie/laptopy/msi.jpg';
+import hp from '../media/kategorie/laptopy/hp.jpg';
+import lenovo from '../media/kategorie/laptopy/lenovo.jpg';
 
 const images = {
     preyon,
@@ -17,58 +19,37 @@ const images = {
     unity,
     kowalski,
     giga,
-    msi
+    msi,
+    hp,
+    lenovo
 };
-
 
 export default function Results() {
     const { category } = useParams();
     const [products, setProducts] = useState([]);
-    const [allProducts, setAllProducts] = useState([]);
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [sortOption, setSortOption] = useState('cena-malejąco');
 
-
-    const handleFilter = (selectedManufacturers, selectedConditions, minPrice, maxPrice) => {
-        const filtered = allProducts.filter(product =>
-            (selectedManufacturers.length === 0 || selectedManufacturers.includes(product.producent)) &&
-            (selectedConditions.length === 0 || selectedConditions.includes(product.condition)) &&
+    const handleFilter = (filters) => {
+        const { manufacturers, conditions, minPrice, maxPrice } = filters;
+        const filtered = products.filter(product =>
+            (manufacturers.length === 0 || manufacturers.includes(product.producent)) &&
+            (conditions.length === 0 || conditions.includes(product.condition)) &&
             product.price >= minPrice &&
             product.price <= maxPrice
         );
-        setProducts(filtered);
-        setFilteredProducts(filtered);
-    };
-    
-    
-
-    useEffect(() => {
-        setAllProducts(productsData);
-        setProducts(productsData);
-    }, []);
-
-    useEffect(() => {
-        if (category && products.length > 0) {
-            filterProducts(category);
-        }
-    }, [category, products]);
-
-    useEffect(() => {
-        sortProducts(sortOption);
-    }, [sortOption]);
-
-    useEffect(() => {
-        console.log('Filtered Products:', filteredProducts);
-    }, [filteredProducts]);
-
-    const filterProducts = (category) => {
-        const filtered = products.filter(product => product.category === category.toLowerCase());
         setFilteredProducts(filtered);
     };
 
-    const sortProducts = (option) => {
+    useEffect(() => {
+        const productsInCategory = productsData.filter(product => product.category === category.toLowerCase());
+        setProducts(productsInCategory);
+        setFilteredProducts(productsInCategory);
+    }, [category]);
+
+    useEffect(() => {
         let sorted = [...filteredProducts];
-        switch (option) {
+        switch (sortOption) {
             case 'cena-rosnąco':
                 sorted.sort((a, b) => a.price - b.price);
                 break;
@@ -79,7 +60,7 @@ export default function Results() {
                 break;
         }
         setFilteredProducts(sorted);
-    };
+    }, [sortOption]);
 
     const handleSortChange = (e) => {
         setSortOption(e.target.value);
@@ -87,13 +68,14 @@ export default function Results() {
 
     return (
         <div className='!mx-auto max-w-[1300px] flex items-start justify-between flex-row !mt-4'>
-        <Filter products={allProducts} onFilter={handleFilter} category={category} />
+            <Filter products={products} onFilter={handleFilter} category={category} />
             <div className="">
                 <div className="text-[14px] p-2 float-right">
                     Sortowanie:
                     <select name="sort" id="sort" onChange={handleSortChange}>
-                        <option value="cena-rosnąco" className="text-right">po cenie rosnąco</option>
-                        <option value="cena-malejąco" className="text-right">po cenie malejąco</option>
+                        <option className="text-center">Wybierz</option>
+                        <option value="cena-rosnąco" className="text-center">po cenie rosnąco</option>
+                        <option value="cena-malejąco" className="text-center">po cenie malejąco</option>
                     </select>
                 </div>
                 <br />
