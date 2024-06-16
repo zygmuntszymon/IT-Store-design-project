@@ -50,7 +50,7 @@ export default function Product() {
   
   const { id } = useParams(); 
   const product = productsData.find(product => product.id === parseInt(id)); 
-
+  const [added,setAdded] = useState(false);
 
   const [selectedRam, setSelectedRam] = useState('16 GB');
   const [selectedSsd, setSelectedSsd] = useState('512 GB');
@@ -58,6 +58,7 @@ export default function Product() {
 
   const handleAddToCart = () => {
     addToCart(product); 
+    setAdded(true);
   };
 
   return (
@@ -173,7 +174,7 @@ export default function Product() {
             <div className='!mt-4 text-center'>
               <input type="number" className='border-2 w-[50px] h-[50px] text-center !mr-4 rounded-lg' value={1} />
 
-              <a onClick={handleAddToCart} className='!mt-4 px-8 py-3 bg-violet-800 hover:bg-violet-900 text-white rounded-md z-[1000] cursor-pointer select-none'>Dodaj do koszyka<svg class="w-[17px] h-[17px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+              <a onClick={handleAddToCart} className={added ? `!mt-4 px-8 py-3 bg-violet-300 text-white rounded-md z-[1000] cursor-pointer select-none` : `!mt-4 px-8 py-3 bg-violet-800 hover:bg-violet-900 text-white rounded-md z-[1000] cursor-pointer select-none`}>Dodaj do koszyka<svg class="w-[17px] h-[17px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5" />
               </svg>
               </a>

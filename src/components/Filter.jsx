@@ -67,7 +67,7 @@ export default function Filter({ products, onFilter, category }) {
                     </div>
                 ))}
             </div>
-            <button onClick={handleFilter} className='!mt-4 w-[80%] py-2 bg-violet-800 hover:bg-violet-900 text-white rounded-md'>Filtruj</button>
+            {/* <button onClick={handleFilter} className='!mt-4 w-[80%] py-2 bg-violet-800 hover:bg-violet-900 text-white rounded-md'>Filtruj</button> */}
         </div>
     )
 }

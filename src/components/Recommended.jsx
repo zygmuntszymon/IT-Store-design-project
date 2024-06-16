@@ -56,7 +56,7 @@ export default function Recommended() {
                     <br />
                     <span></span>
                     <br />
-                    <a href="" className="text-[14px]"><p className="w-full h-fit underline text-center sm:text-right">Zobacz więcej</p></a>
+                    <a href="/results/komputery" className="text-[14px]"><p className="w-full h-fit underline text-center sm:text-right">Zobacz więcej</p></a>
                 </div>
             </div>
         </div>

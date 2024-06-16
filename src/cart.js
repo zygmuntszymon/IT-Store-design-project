@@ -10,13 +10,6 @@ const getCart = () => {
   return cart ? JSON.parse(cart) : [];
 };
 
-const calculateCartTotal = () => {
-  let cart = getCart();
-  let total = cart.reduce((accumulator, product) => {
-      return accumulator + product.price; 
-  }, 0); 
-  
-  return total;
-};
 
-export { addToCart, getCart, calculateCartTotal };
+
+export { addToCart, getCart};

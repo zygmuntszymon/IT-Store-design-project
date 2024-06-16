@@ -96,7 +96,6 @@ export default function ShoppingCart() {
                                     <img src={images[product.images[0]]} className='h-[80px]'></img>
                                 </div>
 
-
                                 <div className='w-[500px] text-left !pl-8'>
                                     <p>{product.title}</p>
                                 </div>
